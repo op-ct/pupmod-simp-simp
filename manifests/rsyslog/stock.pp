@@ -27,16 +27,17 @@ class simp::rsyslog::stock (
 ){
   include 'rsyslog'
   include 'logrotate'
-  include 'rsyslog::global'
+  include 'rsyslog::config'
+
+  validate_string($security_relevant_logs)
 
   # This is just in case someone includes rsyslog::stock::log_server directly.
+  #if (array_include(hiera_array('log_servers'), $::fqdn)) or defined(Class['rsyslog::stock::log_server']) {
   if $is_server or defined(Class['rsyslog::stock::log_server']) {
     include 'rsyslog::stock::log_server'
   }
   else {
-    include 'rsyslog::stock::log_local'
+    include 'rsyslog::stock::log_shipper'
   }
 
-  validate_bool($is_server)
-  validate_string($security_relevant_logs)
 }
