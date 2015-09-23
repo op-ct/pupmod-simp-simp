@@ -355,10 +355,7 @@ class pupmod::master (
 
   # For now, FIPS compliance does not include 4096 bit keys. If FIPS is enabled,
   # set the key length to 2048.
-  $_fips_enabled_on_system = defined('$::fips_enabled') ? { true => $::fips_enabled, default => false }
-  $_fips_enabled_in_hiera = hiera('use_fips')
-
-  if $_fips_enabled_on_system or $_fips_enabled_in_hiera {
+  if hiera('use_fips', false) or defined('$::fips_enabled') ? { true => $::fips_enabled, default => false } {
     $_keylength = '2048'
   }
   else {

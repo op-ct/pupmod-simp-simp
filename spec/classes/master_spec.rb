@@ -1,70 +1,37 @@
 require 'spec_helper'
 
 describe 'pupmod::master' do
-  base_facts = {
-    "RHEL 6" => {
-      :apache_version => '2.2',
-      :fqdn => 'spec.test',
-      :grub_version => '0.97',
-      :hardwaremodel => 'x86_64',
-      :init_systems => ['sysv','rc','upstart'],
-      :interfaces => 'lo,eth0',
-      :ipaddress => '1.2.3.4',
-      :ipaddress_eth0 => '1.2.3.4',
-      :ipaddress_lo => '127.0.0.1',
-      :lsbmajdistrelease => '6',
-      :operatingsystem => 'RedHat',
-      :operatingsystemmajrelease => '6',
-      :passenger_root => '/usr/lib/ruby/gems/1.8/gems/passenger',
-      :passenger_version => '4',
-      :processorcount => 4,
-      :selinux_current_mode => 'enabled',
-      :trusted => { 'certname' => 'spec.test' },
-      :uid_min => '500',
-      :operatingsystemrelease => '6',
-      :osfamily => 'RedHat',
-      :use_fips => true
-    },
-    "RHEL 7" => {
-      :apache_version => '2.4',
-      :fqdn => 'spec.test',
-      :grub_version => '2.02~beta2',
-      :hardwaremodel => 'x86_64',
-      :init_systems => ['sysv','rc','upstart'],
-      :ipaddress => '1.2.3.4',
-      :interfaces => 'lo,eth0',
-      :ipaddress_eth0 => '1.2.3.4',
-      :ipaddress_lo => '127.0.0.1',
-      :lsbmajdistrelease => '7',
-      :operatingsystem => 'RedHat',
-      :operatingsystemmajrelease => '7',
-      :passenger_root => '/usr/lib/ruby/gems/1.8/gems/passenger',
-      :processorcount => 4,
-      :passenger_version => '4',
-      :selinux_current_mode => 'enabled',
-      :trusted => { 'certname' => 'spec.test' },
-      :uid_min => '500',
-      :operatingsystemrelease => '7',
-      :osfamily => 'RedHat',
-      :use_fips => true
-    }
-  }
-
   shared_examples_for "a fact set master" do
-    it { should compile.with_all_deps }
-    it { should create_class('apache') }
-    it { should create_class('pupmod') }
-    it { should create_class('pupmod::master') }
-    it { should create_class('pupmod::master::base') }
+    it { is_expected.to compile.with_all_deps }
+    it { is_expected.to contain_class('apache') }
+    it { is_expected.to contain_class('pupmod') }
+    it { is_expected.to contain_class('pupmod::master') }
+    it { is_expected.to contain_class('pupmod::master::base') }
   end
 
-  describe "RHEL 6" do
-    it_behaves_like "a fact set master"
-    let(:facts) {base_facts['RHEL 6']}
-  end
+  context 'on supported operating systems' do
+    on_supported_os.each do |os, facts|
+      let(:facts){ facts.merge( {
+                :apache_version       => '2.2',
+                :fqdn                 => 'test.host.simp',
+                :passenger_root       => '/usr/lib/ruby/gems/1.8/gems/passenger',
+                :passenger_version    => '4',
+                :selinux_current_mode => 'enabled',
+                :trusted              => { 'certname' => 'spec.test' },
+              })
+      }
 
-  describe "RHEL 7" do
-    it_behaves_like "a fact set master"
-    let(:facts) {base_facts['RHEL 7']}
+      context "on #{os}" do
+        context 'with FIPS enabled' do
+          let(:facts) { facts.merge({ :fips_enabled => true }) }
+          it { is_expected.to contain_ini_setting('pupmod_keylength').with_value( '2048' ) }
+          it_behaves_like "a fact set master"
+        end
+        context 'with FIPS disabled' do
+          let(:facts) { facts.merge({ :fips_enabled => false }) }
+          it { is_expected.to contain_ini_setting('pupmod_keylength').with_value( '4096' ) }
+        end
+      end
+    end
   end
 end
