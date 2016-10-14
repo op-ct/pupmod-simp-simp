@@ -1,4 +1,4 @@
-# == Class: nfs::stock::home_client
+# == Class: simp::nfs::home_client
 #
 # Set up an NFS4 client to point to the server that you defined with
 # nfs::stock::export_home.
@@ -24,23 +24,27 @@
 # * Kendall Moore <mailto:kmoore@keywcorp.com>
 #
 class simp::nfs::home_client (
-  $nfs_server = defined('$::nfs::server') ? { true => $::nfs_server, default => hiera('nfs::server') },
+  $nfs_server = defined('$::nfs_server') ? { true => $::nfs_server, default => hiera('nfs::server') },
   $port = '2049',
   $sec = 'sys',
   $use_autofs = true
 ) {
-  include 'nfs'
-  include 'nfs::idmapd'
 
-  $l_it_is_me = host_is_me($nfs_server)
+  validate_bool($use_autofs)
+  validate_port($port)
 
-  if $l_it_is_me {
-    $l_target = '127.0.0.1'
+  include '::nfs'
+  include '::nfs::idmapd'
+
+  $_it_is_me = host_is_me($nfs_server)
+
+  if $_it_is_me {
+    $_target = '127.0.0.1'
   }
   else {
-    $l_target = $nfs_server
+    $_target = $nfs_server
 
-    if $::selinux_current_mode and $::selinux_current_mode != 'disabled' {
+    if defined('$::selinux_current_mode') and getvar('::selinux_current_mode') != 'disabled' {
       selboolean { 'use_nfs_home_dirs':
         persistent => true,
         value      => 'on'
@@ -50,21 +54,20 @@ class simp::nfs::home_client (
 
   # NOTE:
   # nfs::client::nfs_server must be set in hiera for this to function properly.
-  include 'nfs::client'
+  include '::nfs::client'
 
   if $use_autofs {
-    include 'autofs'
+    include '::autofs'
 
     autofs::map::master { 'home':
       mount_point => '/home',
       map_name    => '/etc/autofs/home.map'
     }
 
-
-    if (! $::nfs::use_stunnel) or $l_it_is_me {
+    if (! $::nfs::use_stunnel) or $_it_is_me {
       autofs::map::entry { 'wildcard':
         options  => "-fstype=nfs4,port=${port},hard,intr,sec=${sec}",
-        location => "${l_target}:/home/&",
+        location => "${_target}:/home/&",
         target   => 'home'
       }
     }
@@ -77,11 +80,11 @@ class simp::nfs::home_client (
     }
   }
   else {
-    if (! $::nfs::use_stunnel) or $l_it_is_me {
+    if (! $::nfs::use_stunnel) or $_it_is_me {
       mount { '/home':
         ensure   => 'mounted',
         atboot   => true,
-        device   => "${l_target}:/home",
+        device   => "${_target}:/home",
         fstype   => 'nfs4',
         options  => "sec=${sec},port=${port},hard,intr",
         remounts => false
@@ -98,7 +101,4 @@ class simp::nfs::home_client (
       }
     }
   }
-
-  validate_bool($use_autofs)
-  validate_port($port)
 }

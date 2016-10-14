@@ -1,50 +1,189 @@
 ---
 fixtures:
   repositories:
-    acpid: "git://github.com/simp/pupmod-simp-acpid"
-    aide: "git://github.com/simp/pupmod-simp-aide"
-    apache: "git://github.com/simp/pupmod-simp-apache"
-    auditd: "git://github.com/simp/pupmod-simp-auditd"
-    augeasproviders_core: "git://github.com/simp/augeasproviders_core"
-    augeasproviders_grub: "git://github.com/simp/augeasproviders_grub"
-    augeasproviders_ssh: "git://github.com/simp/augeasproviders_ssh"
-    augeasproviders_sysctl: "git://github.com/simp/augeasproviders_sysctl"
-    augeasproviders_puppet: "git://github.com/simp/augeasproviders_puppet"
-    autofs: "git://github.com/simp/pupmod-simp-autofs"
-    clamav: "git://github.com/simp/pupmod-simp-clamav"
-    dhcp: "git://github.com/simp/pupmod-simp-dhcp"
-    freeradius: "git://github.com/simp/pupmod-simp-freeradius"
-    ganglia: "git://github.com/simp/pupmod-simp-ganglia"
-    inifile: "git://github.com/simp/puppetlabs-inifile"
-    iptables: "git://github.com/simp/pupmod-simp-iptables"
-    logrotate: "git://github.com/simp/pupmod-simp-logrotate"
-    named: "git://github.com/simp/pupmod-simp-named"
-    nfs: "git://github.com/simp/pupmod-simp-nfs"
-    nscd: "git://github.com/simp/pupmod-simp-nscd"
-    ntpd: "git://github.com/simp/pupmod-simp-ntpd"
-    oddjob: "git://github.com/simp/pupmod-simp-oddjob"
-    openldap: "git://github.com/simp/pupmod-simp-openldap"
-    pam: "git://github.com/simp/pupmod-simp-pam"
-    pki: "git://github.com/simp/pupmod-simp-pki"
-    postfix: "git://github.com/simp/pupmod-simp-postfix"
-    pupmod: "git://github.com/simp/pupmod-simp-pupmod"
-    rsync: "git://github.com/simp/pupmod-simp-rsync"
-    rsyslog: "git://github.com/simp/pupmod-simp-rsyslog"
-    selinux: "git://github.com/simp/pupmod-simp-selinux"
-    simpcat: "git://github.com/simp/pupmod-simp-concat"
-    simplib: "git://github.com/simp/pupmod-simp-simplib"
-    snmpd: "git://github.com/simp/pupmod-simp-snmpd"
-    ssh: "git://github.com/simp/pupmod-simp-ssh"
-    stdlib: "git://github.com/simp/puppetlabs-stdlib"
-    stunnel: "git://github.com/simp/pupmod-simp-stunnel"
-    sssd: "git://github.com/simp/pupmod-simp-sssd"
-    sudo: "git://github.com/simp/pupmod-simp-sudo"
-    sudosh: "git://github.com/simp/pupmod-simp-sudosh"
-    svckill: "git://github.com/simp/pupmod-simp-svckill"
-    sysctl: "git://github.com/simp/pupmod-simp-sysctl"
-    tcpwrappers: "git://github.com/simp/pupmod-simp-tcpwrappers"
-    tftpboot: "git://github.com/simp/pupmod-simp-tftpboot"
-    upstart: "git://github.com/simp/pupmod-simp-upstart"
-    xinetd: "git://github.com/simp/pupmod-simp-xinetd"
+    acpid:
+      repo: https://github.com/simp/pupmod-simp-acpid
+      branch: 5.X
+    activemq:
+      repo: https://github.com/simp/pupmod-simp-activemq
+      branch: 5.X
+    aide:
+      repo: https://github.com/simp/pupmod-simp-aide
+      branch: 5.X
+    apache:
+      repo: https://github.com/simp/pupmod-simp-apache
+      branch: 5.X
+    auditd:
+      repo: https://github.com/simp/pupmod-simp-auditd
+      branch: 5.X
+    augeasproviders:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders
+    augeasproviders_base:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_base
+    augeasproviders_core:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_core
+    augeasproviders_grub:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_grub
+    augeasproviders_puppet:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_puppet
+    augeasproviders_apache:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_apache
+    augeasproviders_mounttab:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_mounttab
+    augeasproviders_nagios:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_nagios
+    augeasproviders_pam:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_pam
+    augeasproviders_postgresql:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_postgresql
+    augeasproviders_shellvar:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_shellvar
+    augeasproviders_ssh:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_ssh
+    augeasproviders_sysctl:
+      branch: 5.X
+      repo: https://github.com/simp/augeasproviders_sysctl
+    autofs:
+      repo: https://github.com/simp/pupmod-simp-autofs
+      branch: 5.X
+    clamav:
+      repo: https://github.com/simp/pupmod-simp-clamav
+      branch: 5.X
+    datacat:
+      branch: 5.X
+      repo: https://github.com/simp/puppet-datacat
+    compliance: https://github.com/trevor-vaughan/pupmod-compliance
+    dhcp:
+      repo: https://github.com/simp/pupmod-simp-dhcp
+      branch: 5.X
+    freeradius:
+      repo: https://github.com/simp/pupmod-simp-freeradius
+      branch: 5.X
+    ganglia:
+      repo: https://github.com/simp/pupmod-simp-ganglia
+      branch: 5.X
+    haveged:
+      branch: 5.X
+      repo: https://github.com/simp/puppet-haveged
+    inifile:
+      branch: 5.X
+      repo: https://github.com/simp/puppetlabs-inifile
+    iptables:
+      repo: https://github.com/simp/pupmod-simp-iptables
+      branch: 5.X
+    java:
+      branch: 5.X
+      repo: https://github.com/simp/puppetlabs-java
+    java_ks:
+      branch: 5.X
+      repo: https://github.com/simp/puppetlabs-java_ks
+    krb5:
+      repo: https://github.com/simp/pupmod-simp-krb5
+      branch: 5.X
+    logrotate:
+      repo: https://github.com/simp/pupmod-simp-logrotate
+      branch: 5.X
+    mcollective:
+      branch: 5.X
+      repo: https://github.com/simp/pupmod-simp-mcollective
+    named:
+      repo: https://github.com/simp/pupmod-simp-named
+      branch: 5.X
+    nfs:
+      repo: https://github.com/simp/pupmod-simp-nfs
+      branch: 5.X
+    nscd:
+      repo: https://github.com/simp/pupmod-simp-nscd
+      branch: 5.X
+    ntpd:
+      repo: https://github.com/simp/pupmod-simp-ntpd
+      branch: 5.X
+    oddjob:
+      repo: https://github.com/simp/pupmod-simp-oddjob
+      branch: 5.X
+    openldap:
+      repo: https://github.com/simp/pupmod-simp-openldap
+      branch: 5.X
+    pam:
+      repo: https://github.com/simp/pupmod-simp-pam
+      branch: 5.X
+    pki:
+      repo: https://github.com/simp/pupmod-simp-pki
+      branch: 5.X
+    postfix:
+      repo: https://github.com/simp/pupmod-simp-postfix
+      branch: 5.X
+    puppetdb:
+      branch: 5.X
+      repo: https://github.com/simp/puppetlabs-puppetdb
+    pupmod:
+      repo: https://github.com/simp/pupmod-simp-pupmod
+      branch: 5.X
+    rsync:
+      repo: https://github.com/simp/pupmod-simp-rsync
+      branch: 5.X
+    rsyslog:
+      repo: https://github.com/simp/pupmod-simp-rsyslog
+      branch: 5.X
+    selinux:
+      repo: https://github.com/simp/pupmod-simp-selinux
+      branch: 5.X
+    simpcat:
+      repo: https://github.com/simp/pupmod-simp-concat
+      branch: 5.X
+    simplib:
+      repo: https://github.com/simp/pupmod-simp-simplib
+      branch: 5.X
+    snmpd:
+      repo: https://github.com/simp/pupmod-simp-snmpd
+      branch: 5.X
+    ssh:
+      repo: https://github.com/simp/pupmod-simp-ssh
+      branch: 5.X
+    stdlib:
+      branch: 5.X
+      repo: https://github.com/simp/puppetlabs-stdlib
+    stunnel:
+      repo: https://github.com/simp/pupmod-simp-stunnel
+      branch: 5.X
+    sssd:
+      repo: https://github.com/simp/pupmod-simp-sssd
+      branch: 5.X
+    sudo:
+      repo: https://github.com/simp/pupmod-simp-sudo
+      branch: 5.X
+    sudosh:
+      repo: https://github.com/simp/pupmod-simp-sudosh
+      branch: 5.X
+    svckill:
+      repo: https://github.com/simp/pupmod-simp-svckill
+      branch: 5.X
+    sysctl:
+      repo: https://github.com/simp/pupmod-simp-sysctl
+      branch: 5.X
+    tcpwrappers:
+      repo: https://github.com/simp/pupmod-simp-tcpwrappers
+      branch: 5.X
+    tftpboot:
+      repo: https://github.com/simp/pupmod-simp-tftpboot
+      branch: 5.X
+    upstart:
+      repo: https://github.com/simp/pupmod-simp-upstart
+      branch: 5.X
+    xinetd:
+      repo: https://github.com/simp/pupmod-simp-xinetd
+      branch: 5.X
   symlinks:
     simp: "#{source_dir}"

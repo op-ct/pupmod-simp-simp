@@ -19,17 +19,29 @@ class simp::base_services {
   }
 
   # These services need to be enabled and made sure to be running.
+  package { 'netlabel_tools':
+    ensure => 'latest'
+  }
+  
   service { 'netlabel':
-      ensure     => 'running',
-      enable     => true,
-      hasrestart => true,
-      hasstatus  => true
+    ensure     => 'running',
+    enable     => true,
+    hasrestart => true,
+    hasstatus  => true,
+    require    => Package['netlabel_tools']
   }
 
   case $::operatingsystem {
     'RedHat','CentOS': {
       if $::operatingsystemmajrelease > '6' {
-        service { 'quotaon': enable => true }
+        # For now, these will be commentd out and ignored by svckill
+        # Puppet cannot enable these services because there is no
+        # init.d script or systemd script to do so.
+
+        #        service { 'quotaon': enable => true }
+        #        service { 'messagebus': enable  => true }
+        svckill::ignore { 'quotaon': }
+        svckill::ignore { 'messagebus': }
 
         service { 'mcstransd':
           enable     => true,
@@ -38,7 +50,6 @@ class simp::base_services {
           require    => Package['mcstrans']
         }
 
-        service { 'messagebus': enable  => true }
       }
       else {
         package { 'hal':      ensure => 'latest' }

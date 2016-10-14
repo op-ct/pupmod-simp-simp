@@ -1,4 +1,4 @@
-# == Class: nfs::stock::export_home
+# == Class: simp::nfs::export_home
 #
 # Define to configure an NFS server to share centralized home directories in
 # the NFSv4 way.
@@ -36,7 +36,7 @@
 #   The networks that are allowed to mount this space.
 #
 # [*sec*]
-#   The sec mode for the export.
+#   An Array of sec modes for the export.
 #
 # [*create_home_dirs*]
 #   Whether or not to automatically create user home directories
@@ -50,19 +50,23 @@
 class simp::nfs::export_home (
   $data_dir = versioncmp(simp_version(),'5') ? { '-1' => '/srv', default => '/var' },
   $client_nets = defined('$::client_nets') ? { true  => $::client_nets, default =>  hiera('client_nets') },
-  $sec = 'none:sys',
+  $sec = ['sys'],
   $create_home_dirs = false
 ) {
-  include 'nfs'
-  include 'nfs::idmapd'
+  validate_net_list($client_nets)
+  validate_bool($create_home_dirs)
+
+  compliance_map()
+
+  include '::nfs'
+  include '::nfs::idmapd'
 
   # NOTE: You must set nfs::server::client_ips in hiera for this to function properly.
-  include 'nfs::server'
+  include '::nfs::server'
 
   if $create_home_dirs {
-    include 'nfs::server::create_home_dirs'
+    include '::simp::nfs::create_home_dirs'
   }
-
 
   if ! $::nfs::use_stunnel {
     nfs::server::export { 'nfs4_root':
@@ -82,7 +86,7 @@ class simp::nfs::export_home (
   }
   else {
     nfs::server::export { 'nfs4_root':
-      client      => '127.0.0.1',
+      client      => ['127.0.0.1'],
       export_path => "${data_dir}/nfs/exports",
       sec         => $sec,
       fsid        => '0',
@@ -91,7 +95,7 @@ class simp::nfs::export_home (
     }
 
     nfs::server::export { 'home_dirs':
-      client      => '127.0.0.1',
+      client      => ['127.0.0.1'],
       export_path => "${data_dir}/nfs/exports/home",
       rw          => true,
       sec         => $sec,
@@ -108,7 +112,8 @@ class simp::nfs::export_home (
     ensure => 'directory',
     owner  => 'root',
     group  => 'root',
-    mode   => '0755'
+    mode   => '0755',
+    before => $create_home_dirs ? { true => Class['simp::nfs::create_home_dirs'], default => undef }
   }
 
   mount { "${data_dir}/nfs/exports/home":
@@ -122,7 +127,4 @@ class simp::nfs::export_home (
       File["${data_dir}/nfs/home"]
     ]
   }
-
-  validate_net_list($client_nets)
-  validate_bool($create_home_dirs)
 }

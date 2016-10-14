@@ -82,15 +82,18 @@ class simp::rsyslog::stock::log_server (
   $use_default_boot_rules = true,
   $use_iptables = defined('$::use_iptables') ? { true  => $::use_iptables, default =>  hiera('use_iptables') }
 ) {
-  include '::simp::rsyslog::stock'
   include '::rsyslog'
   include '::rsyslog::server'
+
+  assert_private()
 
   validate_array_member($rotate_period,['daily','weekly','monthly','yearly'])
   validate_bool($use_iptables)
   validate_string($server_conf)
   validate_integer($rotate)
   validate_net_list($client_nets)
+
+  compliance_map()
 
   # Now, since this is a log server, we'll probably want to run logrotate once
   # per hour to make sure we don't eat up all of our disk space.

@@ -1,90 +1,56 @@
-Summary: SIMP Puppet Module
-Name: pupmod-simp
-Version: 1.1.0
-Release: 7
-License: Apache License, Version 2.0
-Group: Applications/System
-Source: %{name}-%{version}-%{release}.tar.gz
-Requires: pupmod-aide >= 4.1.0-2
-Requires: pupmod-apache >= 4.1.0-4
-Requires: pupmod-auditd >= 4.1.0-3
-Requires: pupmod-augeasproviders_puppet
-Requires: pupmod-clamav >= 4.1.0-2
-Requires: pupmod-dhcp >= 4.1.0-0
-Requires: pupmod-iptables >= 4.1.0-3
-Requires: pupmod-logrotate >= 4.1.0-0
-Requires: pupmod-named >= 4.2.0-0
-Requires: pupmod-nscd >= 5.0.0-0
-Requires: pupmod-ntpd >= 4.1.0-1
-Requires: pupmod-openldap >= 4.1.0-3
-Requires: pupmod-pam >= 4.1.0-3
-Requires: pupmod-pki >= 4.1.0-0
-Requires: pupmod-postfix >= 4.1.0-0
-Requires: pupmod-pupmod >= 6.0.0-3
-Requires: pupmod-puppetlabs-inifile >= 1.0.0-0
-Requires: pupmod-rsync >= 4.1.0-1
-Requires: pupmod-rsyslog >= 5.0.0-0
-Requires: pupmod-selinux >= 1.0.0-1
-Requires: pupmod-simpcat
-Requires: pupmod-simplib
-Requires: pupmod-ssh >= 4.1.0-2
-Requires: pupmod-stunnel >= 4.2.0-0
-Requires: pupmod-sudo >= 4.1.0-0
-Requires: pupmod-sudosh >= 4.1.0-0
-Requires: pupmod-svckill >= 1.0.0-0
-Requires: pupmod-sysctl >= 4.1.0-0
-Requires: pupmod-tcpwrappers >= 2.1.0-0
-Requires: pupmod-tftpboot >= 4.1.0-1
-Requires: pupmod-upstart >= 4.1.0-2
-Requires: pupmod-xinetd >= 2.1.0-0
-Requires: puppetlabs-stdlib >= 4.1.0-1.SIMP
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Buildarch: noarch
-Requires: simp-bootstrap >= 4.2.0
-Obsoletes: pupmod-simp-test >= 0.0.1
+* Mon Oct 10 2016 Nick Markowski <nmarkowski@keywcorp.com> - 1.2.10-0
+- Ensured netlabel_tools is installed.
 
-Prefix: %{_sysconfdir}/puppet/environments/simp/modules
+* Mon Oct 3 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 1.2.9-0
+- Added Elasticsearch and Grafana Keys to yum config
 
-%description
-This puppet module provides a set of default classes that will be
-useful to most users and which form the foundation of the core SIMP
-installation.
+* Thu Sep 29 2016 Chris Tessmer <chris.tessmer@onyxpoint.com> - 1.2.8-0
+- Fixed beaker reference in Gemfile.
 
-%prep
-%setup -q
+* Tue Aug 09 2016 Nick Markowski <nmarkowski@keywcorp.com> - 1.2.7-0
+- Fixed an invalid data type in simp::nfs::export_home.
 
-%build
+* Tue Aug 02 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.6-0
+- Update to the new naming convention
 
-%install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+* Wed Jul 20 2016 Nick Markowski <nmarkowski@keywcorp.com> - 1.2.5-0
+- Migrated create_home_dirs from nfs.
+- Modified create_home_dirs to use ruby-net-ldap.
 
-mkdir -p %{buildroot}/%{prefix}/simp
+* Wed Jul 13 2016 Nick Miller <nick.miller@onyxpoint.com> - 1.2.4-0
+- Yum repos now default to https with sslverify=false
 
-dirs='files lib manifests templates'
-for dir in $dirs; do
-  test -d $dir && cp -r $dir %{buildroot}/%{prefix}/simp
-done
+* Mon Jul 11 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.3-0
+- Migration to semantic versioning and fix of the build system
 
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+* Sat May 14 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.2-0
+- Spec test fixes
 
-mkdir -p %{buildroot}/%{prefix}/simp
+* Wed May 11 2016 Nick Markowski <nmarkowski@keywcorp.com> - 1.2.2-0
+- Added a hook to control SSLVerifyClient in ks.conf.  Defaults
+  to 'optional'.
 
-%files
-%defattr(0640,root,puppet,0750)
-%{prefix}/simp
+* Wed Apr 13 2016 Kendall Moore <kendall.moore@onyxpoint.com> - 1.2.1-0
+- Svckill now ignores quotaon and messagebus in RHEL/CentOS 7
 
-%post
-#!/bin/sh
+* Mon Mar 14 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.2.0-0
+- Moved to Semantic Versioning 2.0
+- Ensure that SSSD is used for systems EL6.7+
+- Removed RPM dependency on simp-bootstrap as it is not technically required.
+- Test against Puppet 4.3.2
 
-if [ -d %{prefix}/simp/plugins ]; then
-  /bin/mv %{prefix}/simp/plugins %{prefix}/simp/plugins.bak
-fi
+* Tue Mar 08 2016 Nick Markowski <nmarkowski@keywcorp.com> - 1.1.0-9
+- Updated a bad default for nfs_server in the home_client class, which
+  otherwise had the potential to render a nil server value, and
+  break automounting.
 
-%postun
-# Post uninstall stuff
+* Wed Feb 24 2016 Nick Markowski <nmarkowski@keywcorp.com> - 1.1.0-8
+- Updated the mcollective stock class and added appropriate spec and unit
+  testing for full functionality test coverage.
 
-%changelog
+* Fri Feb 19 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 1.1.0-8
+- Added compliance function support
+
 * Mon Dec 28 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 1.1.0-7
 - Updated minor logic in simp::yum for flexibility.
 
