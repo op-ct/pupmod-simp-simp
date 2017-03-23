@@ -1,3 +1,7 @@
+* Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.2.0-0
+- Updated the YUM configuration so that no repos are set up by default and it
+  is simple to connect to the public repos for SIMP.
+
 * Wed Mar 01 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.1.0-0
 - Added the new Grafana GPG key to the list and retained the old one until they
   re-sign their old packages.
