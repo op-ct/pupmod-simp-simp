@@ -1,4 +1,4 @@
-* Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.2.0-0
+* Thu Mar 23 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.0.0-0
 - Updated the YUM configuration so that no repos are set up by default and it
   is simple to connect to the public repos for SIMP.
 
