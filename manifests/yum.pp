@@ -1,5 +1,4 @@
-# Set up the ``/etc/yum`` directory, and ensures that ``yum-skip-broken`` is
-# installed.
+# Set up the ``/etc/yum`` directory, enable an auto-update cron-job
 #
 # @param auto_update
 #   Enable the automatic yum cron job
