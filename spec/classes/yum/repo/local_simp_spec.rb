@@ -38,8 +38,7 @@ describe 'simp::yum::repo::local_simp' do
           os_baseurl  = "#{os_yum_path}/#{facts[:architecture]}"
           os_gpgkey   = "#{os_yum_path}/GPGKEYS"
           _keys = base_gpgkeys + other_gpgkeys.fetch( "#{facts[:os][:name]}-#{facts[:os][:release][:major]}" )
-          _gpgkey = _keys.map{|x| "https://puppet.example.simp/yum/#{os_gpgkey}/#{x}"}
-          gpgkey = _gpgkey.join("\n    ")
+          gpgkey = _keys.map{|x| "https://puppet.example.simp/yum/#{os_gpgkey}/#{x}"}.join("\n    ")
 
           is_expected.to contain_yumrepo('simp').with(
             :baseurl => "https://puppet.example.simp/yum/#{os_baseurl}",
@@ -56,7 +55,7 @@ describe 'simp::yum::repo::local_simp' do
           {
           :servers => [
             'puppet.example.simp',
-            'xxx.yyy.zzz',
+            '192.0.2.5',
             arbitrary_url,
           ],
           :extra_gpgkey_urls => [
@@ -76,14 +75,14 @@ describe 'simp::yum::repo::local_simp' do
           os_baseurl  = "#{os_yum_path}/#{facts[:architecture]}"
           os_gpgkey   = "#{os_yum_path}/GPGKEYS"
           _keys = base_gpgkeys + other_gpgkeys.fetch( "#{facts[:os][:name]}-#{facts[:os][:release][:major]}" )
-          _gpgkey = ['puppet.example.simp', 'xxx.yyy.zzz']
+          _gpgkey = ['puppet.example.simp', '192.0.2.5']
             .map{ |y|  _keys.map{|x| "https://#{y}/yum/#{os_gpgkey}/#{x}"} }
           gpgkey = _gpgkey.join("\n    ")
           gpgkey += "\n    #{arbitrary_url}/RPM-GPG-KEY-#{os_name}-#{os_maj_rel}"
 
           is_expected.to contain_yumrepo('simp').with(
             :baseurl => "https://puppet.example.simp/yum/#{os_baseurl}\n    " +
-                        "https://xxx.yyy.zzz/yum/#{os_baseurl}\n    " +
+                        "https://192.0.2.5/yum/#{os_baseurl}\n    " +
                         arbitrary_url,
             :gpgkey  => gpgkey
           )

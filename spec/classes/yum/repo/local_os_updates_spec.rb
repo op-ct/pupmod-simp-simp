@@ -40,7 +40,7 @@ describe 'simp::yum::repo::local_os_updates' do
           {
           :servers => [
             'puppet.example.simp',
-            'xxx.yyy.zzz',
+            '192.0.2.5',
             arbitrary_url,
           ],
           :extra_gpgkey_urls => [
@@ -57,7 +57,7 @@ describe 'simp::yum::repo::local_os_updates' do
                           "#{facts[:os][:name]}_#{facts[:os][:release][:major]}" +
                           "_#{facts[:architecture]}"
 
-          gpg_prefixes = ['puppet.example.simp', 'xxx.yyy.zzz']
+          gpg_prefixes = ['puppet.example.simp', '192.0.2.5']
             .map{|x| "https://#{x}/yum/#{os_yum_path}" }
 
           if os_name  == 'RedHat'
@@ -69,7 +69,7 @@ describe 'simp::yum::repo::local_os_updates' do
 
           is_expected.to contain_yumrepo('os_updates').with(
             :baseurl => "https://puppet.example.simp/yum/#{os_yum_path}/Updates\n    " +
-                        "https://xxx.yyy.zzz/yum/#{os_yum_path}/Updates\n    " +
+                        "https://192.0.2.5/yum/#{os_yum_path}/Updates\n    " +
                         arbitrary_url,
             :gpgkey  => gpgkey
           )
