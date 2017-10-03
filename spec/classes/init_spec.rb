@@ -4,15 +4,27 @@ require 'facterdb'
 describe 'simp' do
   context 'on unsupported operating systems' do
     facterdb_queries = [
-      {:operatingsystem => 'OracleLinux',:operatingsystemmajrelease => '7'},
+      {:operatingsystem => 'OracleLinux',:operatingsystemmajrelease => '7', :hardwaremodel => 'x86_64'},
       {:operatingsystem => 'Ubuntu',:operatingsystemmajrelease => '16.04', :hardwaremodel => 'x86_64'},
     ]
 
     facterdb_queries.each do |facterdb_query|
 
+      require 'pp'
+      puts '============================================================'
+      puts
       os_facts = FacterDB.get_facts(facterdb_query).first
+      puts "Query: '#{facterdb_query.to_s}'"
+      puts
+      pp os_facts
+      puts
+      puts "os_facts.keys.sort"
+      puts
+      puts "os_facts[:os]: '#{os_facts.fetch(:os,'---')}'"
       _os    = os_facts[:os]
       os     = "#{_os['name'].downcase}-#{_os['release']['major']}-#{_os['hardware']}"
+      puts
+      puts '============================================================'
 
       context "on #{os}" do
         let:facts do
