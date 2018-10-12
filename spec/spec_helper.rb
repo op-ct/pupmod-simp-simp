@@ -83,8 +83,6 @@ RSpec.configure do |c|
     }
   }
 
-  c.trusted_server_facts = true
-
   c.mock_framework = :rspec
   c.mock_with :mocha
 

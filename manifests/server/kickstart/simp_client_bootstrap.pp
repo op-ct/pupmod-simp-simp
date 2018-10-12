@@ -45,13 +45,13 @@
 #   The FQDN of your Puppet server
 #
 #   * If not set, will use ``$server_facts['servername']``, or the puppet
-#     server set in puppet.conf if trusted_server_facts isn't set or found.
+#     server set in puppet.conf
 #
 # @param puppet_ca
 #   The FQDN of your Puppet CA
 #
 #   * If not set, will use ``$server_facts['servername']``, or the puppet
-#     server set in puppet.conf if trusted_server_facts isn't set or found.
+#     server set in puppet.conf
 #
 # @param puppet_ca_port
 #   The port upon which the Puppet CA is listening.
