@@ -1,5 +1,4 @@
-# @summary Set up a SIMP server in such a way that it will be ready to serve
-# configuration data appropriately to your clients.
+# @summary Profile to configure a SIMP server
 #
 # @param allow_simp_user
 #   Ensure that the ``simp`` user can login to the system
@@ -31,7 +30,7 @@
 #   An **internal** parameter used for determining the correct classes to apply
 #   for the ``scenario``
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::server (
   Hash[String, Array] $scenario_map,

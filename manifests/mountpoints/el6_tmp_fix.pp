@@ -1,9 +1,11 @@
-# @summary There is a bizarre bug where ``/tmp`` and ``/var/tmp`` will have
-# incorrect permissions after the *second* reboot after bootstrapping SIMP.
-# This upstart job is an effective, but kludgy, way to remedy this issue.
+# There is a bizarre bug where ``/tmp`` and ``/var/tmp`` will have incorrect
+# permissions after the *second* reboot after bootstrapping SIMP.  This upstart
+# job is an effective, but kludgy, way to remedy this issue.
 #
 # We have not been able to repeat the issue reliably enough in a controlled
 # environment to determine the root cause.
+#
+# @summary Configures upstart to work around a bizarre FS permission bug on EL6
 class simp::mountpoints::el6_tmp_fix {
 
   simplib::module_metadata::assert($module_name, { 'blacklist' => ['Windows'] })

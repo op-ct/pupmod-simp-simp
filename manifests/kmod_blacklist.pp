@@ -1,5 +1,8 @@
-# @summary This class provides a default set of blacklist entries per the SCAP
-# Security Guide
+# This profile provides a default set of blacklist entries per the SCAP Security Guide
+#
+# @summary Provides a default set of blacklist entries per the SCAP Security Guide
+#
+# @see https://access.redhat.com/solutions/41278#sharedrhel5678
 #
 # @param enable_defaults
 #   Enable to use the default blacklist, otherwise just the

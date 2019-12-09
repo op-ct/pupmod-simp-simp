@@ -1,4 +1,4 @@
-# @summary Set up the local SIMP repositiories for disconnected environments.
+# Set up local SIMP yum repositories for offline environments
 #
 # Generally, this is used by the ISO installation.
 #
@@ -11,26 +11,28 @@
 # * For more complex scenarios, create a site-specific profile and use the native
 #   `yumrepo` type directly.
 #
-#  @example Describing a single server by FQDN
-#    # When classified to an CentOS 6 x86_64 host, this creates an os_updates
-#    # yumrepo with the ``baseurl`` "https://yum.test.simp/yum/CentOS/6/x86_64/Updates"
-#    simp::yum::repo::os_updates_local {
-#      servers => ['yum.test.simp']
-#    }
+# @summary Set up local SIMP repositiories for disconnected environments
 #
-#  @example Describing a single server by FQDN
-#    # When classified to an CentOS 6 x86_64 host, this creates an os_updates
-#    # yumrepo with a 3-entry ``baseurl`` and a 3-entry ``gpgkey``
-#    simp::yum::repo::os_updates_local {
-#      servers => [
-#        'yum.test.simp',
-#        'yum2.test.simp',
-#        'https://yum.updates.url/full/path/to/repo/c6-64-u'
-#      ],
-#      extra_gpgkey_urls => [
-#        'https://yum.updates.url/full/path/to/repo/c6-64-u/RPM-GPG-KEY-CentOS-6'
-#      ]
-#    }
+# @example Describing a single server by FQDN
+#   # When classified to an CentOS 6 x86_64 host, this creates an os_updates
+#   # yumrepo with the ``baseurl`` "https://yum.test.simp/yum/CentOS/6/x86_64/Updates"
+#   simp::yum::repo::os_updates_local {
+#     servers => ['yum.test.simp']
+#   }
+#
+# @example Describing a single server by FQDN
+#   # When classified to an CentOS 6 x86_64 host, this creates an os_updates
+#   # yumrepo with a 3-entry ``baseurl`` and a 3-entry ``gpgkey``
+#   simp::yum::repo::os_updates_local {
+#     servers => [
+#       'yum.test.simp',
+#       'yum2.test.simp',
+#       'https://yum.updates.url/full/path/to/repo/c6-64-u'
+#     ],
+#     extra_gpgkey_urls => [
+#       'https://yum.updates.url/full/path/to/repo/c6-64-u/RPM-GPG-KEY-CentOS-6'
+#     ]
+#   }
 #
 # @param servers
 #   An Array of FQDNs, IPs, or URLs containing the yum server(s) to use.

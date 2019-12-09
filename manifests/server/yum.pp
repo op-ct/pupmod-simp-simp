@@ -1,14 +1,15 @@
-# @summary This class sets up a YUM site at `${data_dir}/yum` and is used by
-# the default SIMP server.
+# @summary Set up a yum server
 #
 # @param data_dir
+#   Path to web server directory, where the `yum` directory will be established
 #
 # @param trusted_nets
-#   The networks to allow into the YUM server.
+#   Networks allowed to access the yum server
 #
 # @param createrepo_ensure
+#   Strategy to manage the `createrepo` version. Can be 'latest' or 'installed'
 #
-# @author Trevor Vaughan <mailto:tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::server::yum (
   Stdlib::Absolutepath $data_dir          = '/var/www',

@@ -33,7 +33,7 @@
 #   The hosts from which to allow access to the rsync shares. This option has
 #   no effect if ``$use_stunnel`` is ``true``.
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::server::rsync_shares (
   Stdlib::Absolutepath $rsync_base         = '/var/simp/environments',

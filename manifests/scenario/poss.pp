@@ -1,20 +1,20 @@
-# **NOTE: THIS IS A [PRIVATE](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private) CLASS**
+# @api private
 #
-# @summary The 'Puppet Open Source Software' Scenario
+# Configure a *minimal* system that can connect to a SIMP Puppet server.
 #
-# This provides a *minimal* system that connects to a SIMP Puppet server.
-#
-# This class *does not* provide security for a system but it designed to simply
-# allow you to connect to the Puppet server and run puppet as a client.
+# This class *does not* provide security for a system; it is merely designed
+# to connect to a Puppet server and run puppet as an agent.
 #
 # This class requires no additional configuration to function.
+#
+# @summary The *Minimum* configuration required to connect to a SIMP Puppet server
 #
 # @param puppet_server_hosts_entry
 #   Add a ``host`` entry for the Puppet server to the catalog
 #
 #   * This has no effect if the ``$server_facts`` Hash is not populated
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::scenario::poss (
   Boolean $puppet_server_hosts_entry  = $::simp::puppet_server_hosts_entry

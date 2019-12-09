@@ -30,7 +30,7 @@
 #   every time someone logs into any system connected to the LDAP
 #   server.
 #
-# @author Trevor Vaughan <mailto:tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::server::ldap (
   Boolean    $is_slave        = false,

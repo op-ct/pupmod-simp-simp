@@ -1,11 +1,24 @@
-# @summary This class provides an entry point to configuring your systems to
-# take full advantage of SIMP capabilities.
+# A high-level profile that includes and configures SIMP.
 #
-# This is primarily done through the ``simp::scenario`` classes that provide
-# specifically supported configurations of core SIMP systems and clients.
+# Nodes that take advantage of SIMP's full capabilities should always include this class.
 #
-# If you're planning to use SIMP capabilities, you should always include this
-# class.
+# The most significant configuration is the SIMP 'scenario', a targeted
+# collection of core SIMP subsystems.  By default, this will be the full `'simp'`
+# scenario, which controls the full gamut of core subsystems and focuses on
+# strict compliance.  Other SIMP scenarios available—see the simp module's
+# README.md for details.
+#
+# @summary Entry-point profile to include and configure SIMP
+#
+# @example Basic usage
+#
+#   include 'simp'
+#
+# @example Configure SIMP with a specific scenario
+#
+#   class{ 'simp':
+#     scenario => 'simp_lite',
+#   }
 #
 # @param scenario_map
 #   An **internal use** parameter for configuring pre-defined maps

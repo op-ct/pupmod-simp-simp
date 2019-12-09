@@ -1,6 +1,4 @@
-# @summary Manage the content of ``/etc/rc.d/rc.local``
-#
-# By default, this class will disable the file altogether
+# @summary Manage the content of ``/etc/rc.d/rc.local`` (disables the file by default)
 #
 # @param content
 #   Set to ``disable`` to disable the file completely
@@ -14,7 +12,7 @@
 # @param management_comment
 #   Adds a 'managed by Puppet' comment to the top of the file
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::rc_local (
   String               $content            = 'disable',

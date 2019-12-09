@@ -1,8 +1,11 @@
-# @summary Configure the system to disconnect from the Puppet server once it
-# has successfully run
+# Configure the system to remove Puppet and SIMP artifacts after a successful
+# run (e.g., a "one-shot" configuration)
 #
 # This should *not* be used as part of the standard SIMP runpuppet
 # configuration
+#
+# @summary Configure system to remove Puppet & SIMP artifacts after a
+#   successful run
 #
 # @param enable_user
 #   Add a one_shot user account that will be able to login to the system
@@ -69,7 +72,7 @@
 # @param finalize_debug
 #   Enable syslog output debugging on the one_shot finalization script
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::one_shot (
   Boolean             $enable_user                  = true,

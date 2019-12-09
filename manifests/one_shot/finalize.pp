@@ -1,7 +1,7 @@
-# NOTE: THIS IS A [PRIVATE](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private) CLASS**
+# @api private
 #
-# @summary A 'last effort' script to clean up all of the SIMP material on the
-# system that may cause issues
+# @summary Configure a 'last effort' script to clean up any Puppet + SIMP
+#   material that could cause issues after a one_shot scenario run
 #
 # @param dry_run
 #   Run the finalization script in 'dry_run' mode and output all commands

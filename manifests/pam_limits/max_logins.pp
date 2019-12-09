@@ -5,7 +5,7 @@
 #
 #   * The default meets ``CCE-27457-1``
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::pam_limits::max_logins (
   Integer[0] $value = 10

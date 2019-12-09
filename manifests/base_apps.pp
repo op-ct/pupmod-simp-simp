@@ -21,7 +21,7 @@
 # @param manage_elinks_config
 #   Add some useful settings to the global elinks configuration
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::base_apps (
   Simp::PackageEnsure       $ensure               = simplib::lookup('simp_options::package_ensure', { 'default_value' => 'installed' }),

@@ -1,6 +1,8 @@
-# @summary This class manages the runpuppet script, which is a script that can
+# This class manages the runpuppet script, which is a script that can
 # be run to bootstrap provisioned clients, adding them to puppet and running it
 # in a fashion similar so `simp bootstrap`.
+#
+# @summary Provide the `runpuppet` script on the kickstart server
 #
 # @param data_dir
 #   The location of the web root in which the kickstart directory
@@ -40,7 +42,7 @@
 #   seconds between checking into the puppet master for a signed certificate.
 #   This will go on until a signed certificate is presented.
 #
-#   If set to false or 0, the client will immediately timeout if a signed
+#   If set to `false` or `0`, the client will immediately time out if a signed
 #   certificate is not presented.
 #
 # @param fips

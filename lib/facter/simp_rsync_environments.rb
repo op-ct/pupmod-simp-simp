@@ -8,7 +8,7 @@
 #   * If you want to use a different directory, you'll need to create another
 #     fact with a higher weight than this one.
 #
-# @author Trevor Vaughan - tvaughan@onyxpoint.com
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 Facter.add('simp_rsync_environments') do
   environments = File.join('', 'var', 'simp', 'environments')

@@ -6,7 +6,7 @@
 #
 #   * Is confined on the presence of this directory.
 #
-# @author Trevor Vaughan - tvaughan@onyxpoint.com
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 Facter.add('portreserve_configured') do
   confine do

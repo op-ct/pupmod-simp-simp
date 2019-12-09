@@ -1,5 +1,7 @@
-# @summary Set up a host of common administrative functions including
-# administrator group system access, auditor access, and default ``sudo`` rules
+# Set up access controls for common administrative functions, including
+#   administrator group system access, auditor access, and default ``sudo`` rules
+#
+# @summary Set up access controls for common administrative functions
 #
 # @param admin_group
 #   The group name of the Administrators for the system
@@ -68,7 +70,7 @@
 #
 #   * Has no effect if ``$set_selinux_login`` is not set
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::admin (
   String                $admin_group               = 'administrators',

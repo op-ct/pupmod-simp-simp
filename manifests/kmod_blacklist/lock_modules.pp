@@ -1,8 +1,10 @@
-# @summary This class toggles the ability to load any further kernel modules
-# into the system until the system has been rebooted.
+# This class toggles the ability to load any further kernel modules into the
+# system until the system has been rebooted.
 #
 # This will only take effect if the system has the ``kernel.modules_disabled``
 # sysctl feature.
+#
+# @summary Toggles loading any further kernel modules until the system reboots
 #
 # @param enable
 #   Lock all module loading abilities

@@ -1,8 +1,7 @@
-# @summary This class enables a PuppetDB server with defaults set for SIMP
-# compatibility.
+# @summary Manage PuppetDB server with defaults set for SIMP compatibility
 #
-# **NOTE:** Hiera variables **must** be set appropriately under the puppetdb
-# namespace
+# @note Hiera variables **must** be set appropriately under the puppetdb
+#   namespace
 #
 # @param trusted_nets
 #   This is used to allow specific hosts access to PuppetDB
@@ -11,43 +10,41 @@
 #     PuppetDB, primarly Puppet Masters.
 #
 #   * Unfortunately, this cannot be set via exported resources since PuppetDB
-#     needs to be running prior to exported resources functioning properly.
+#     needs to be running already for exported resources to functionin properly.
 #     Once PuppetDB is up, then you can switch this to exported resources mode
 #     using the **use_exported_resources** variable.
 #
-# All other parameters are taken directly from ``puppetdb::server``
-#
-# @param listen_address
-# @param listen_port
-# @param open_listen_port
-# @param ssl_deploy_certs
-# @param ssl_set_cert_paths
-# @param ssl_listen_address
-# @param ssl_listen_port
-# @param use_puppet_ssl_certs
-# @param disable_ssl
-# @param manage_package_repo
-# @param database_password
-# @param read_database_username
-# @param read_database_password
-# @param read_database_name
+# @param listen_address          _Taken directly from ``puppetdb::server``_
+# @param listen_port             _Taken directly from ``puppetdb::server``_
+# @param open_listen_port        _Taken directly from ``puppetdb::server``_
+# @param ssl_deploy_certs        _Taken directly from ``puppetdb::server``_
+# @param ssl_set_cert_paths      _Taken directly from ``puppetdb::server``_
+# @param ssl_listen_address      _Taken directly from ``puppetdb::server``_
+# @param ssl_listen_port         _Taken directly from ``puppetdb::server``_
+# @param use_puppet_ssl_certs    _Taken directly from ``puppetdb::server``_
+# @param disable_ssl             _Taken directly from ``puppetdb::server``_
+# @param manage_package_repo     _Taken directly from ``puppetdb::server``_
+# @param database_password       _Taken directly from ``puppetdb::server``_
+# @param read_database_username  _Taken directly from ``puppetdb::server``_
+# @param read_database_password  _Taken directly from ``puppetdb::server``_
+# @param read_database_name      _Taken directly from ``puppetdb::server``_
 # @param read_database_ssl
 #   This parameter has been deprecated, because its corresponding
 #   ``puppetdb::server`` parameter has been replaced with
 #   ``puppetdb::server::read_database_jdbc_ssl_properties``.
 #   Use $read_database_jdbc_ssl_properties = '?ssl=true' instead.
 #
-# @param read_database_jdbc_ssl_properties
-# @param manage_firewall
-# @param manage_puppetserver
-# @param java_max_memory
-# @param java_start_memory
-# @param java_tmpdir
-# @param java_heapdump_on_oom
-# @param java_prefer_ipv4
-# @param automatic_dlo_cleanup
-# @param dlo_max_age
-# @param firewall
+# @param read_database_jdbc_ssl_properties  _Taken directly from ``puppetdb::server``_
+# @param manage_firewall                    _Taken directly from ``puppetdb::server``_
+# @param manage_puppetserver                _Taken directly from ``puppetdb::server``_
+# @param java_max_memory                    _Taken directly from ``puppetdb::server``_
+# @param java_start_memory                  _Taken directly from ``puppetdb::server``_
+# @param java_tmpdir                        _Taken directly from ``puppetdb::server``_
+# @param java_heapdump_on_oom               _Taken directly from ``puppetdb::server``_
+# @param java_prefer_ipv4                   _Taken directly from ``puppetdb::server``_
+# @param automatic_dlo_cleanup              _Taken directly from ``puppetdb::server``_
+# @param dlo_max_age                        _Taken directly from ``puppetdb::server``_
+# @param firewall                           _Taken directly from ``puppetdb::server``_
 #
 # @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #

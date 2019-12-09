@@ -1,6 +1,10 @@
-# @summary A set of default sudoers aliases
+# This class manages default sudoers aliases that many people have requested
+# over time.
 #
-# Take care not to add anything that can access a root shell
+# If you change the defaults, take care not to add anything that can access a
+# root shell.
+#
+# @summary Useful default sudoers aliases for common use cases
 #
 # @param audit_alias
 #   Commands useful for auditing the system

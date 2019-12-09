@@ -1,5 +1,4 @@
-# @summary This class sets up an SSSD client based on the normal SIMP
-# parameters
+# This class sets up an SSSD client based on the normal SIMP parameters.
 #
 # This should work for most out-of-the-box installations. Otherwise, it serves
 # as an example of what you can do to make it work for your environment.
@@ -9,6 +8,8 @@
 #
 # If you don't specify either ``$ldap_domain`` or ``$local_domain``, this class
 # will not execute anything on the client.
+#
+# @summary Manage SIMP SSSD clients
 #
 # @see https://docs.puppetlabs.com/puppet/latest/reference/lang_resources_advanced.html#amending-attributes-with-a-collector Amending Attributes With a Collector
 #
@@ -38,7 +39,7 @@
 # @param min_id
 #   The lowest user ID that SSSD should recognize from the remote server
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::sssd::client (
   Boolean $ldap_domain       = simplib::lookup('simp_options::ldap', { 'default_value' => false }),

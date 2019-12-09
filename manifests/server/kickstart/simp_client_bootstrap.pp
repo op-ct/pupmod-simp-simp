@@ -1,4 +1,4 @@
-# @summary This class manages simp_client_bootstrap scripts, which are scripts
+# This class manages simp_client_bootstrap scripts, which are scripts
 # that can be run to bootstrap SIMP clients via Puppet, in a fashion similar to
 # `simp bootstrap`, the bootstrap script for the SIMP server.
 #
@@ -15,6 +15,8 @@
 # * `<$service_root_name>.service`: systemd service unit file that
 #   uses `bootstrap_simp_client` to bootstrap the server and then
 #   reboots the client to complete the bootstrap operation
+#
+# @summary Provide the `simp_client_bootstrap` on the kickstart server
 #
 # @param data_dir
 #   The location of the web root in which the kickstart directory

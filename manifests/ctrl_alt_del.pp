@@ -16,7 +16,7 @@
 # @param severity
 #   The ``syslog`` severity to use for the log message
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::ctrl_alt_del (
   Boolean                   $enable    = false,

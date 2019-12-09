@@ -1,8 +1,12 @@
-# **NOTE: THIS IS A [PRIVATE](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private) CLASS**
+# @api private
 #
-# @summary This class provides the basis of what a native SIMP system should
+# Configure basic SIMP subsystems, using the `simp` profile's parameter values.
+#
+# This class provides the basis of what a native SIMP system should
 # be. It is expected that users may deviate from this configuration over time,
 # but this should be an effective starting place.
+#
+# @summary  Configure basic SIMP subsystems, using the `simp` profile's parameters
 #
 # @param mail_server
 #   Install a local mail service on the system
@@ -73,7 +77,7 @@
 #
 #   * Has no effect if ``$sssd`` is ``false``
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-simp/graphs/contributors
 #
 class simp::scenario::base (
   Variant[Boolean,Enum['remote']] $mail_server                = $::simp::mail_server,
